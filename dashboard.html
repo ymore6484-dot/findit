@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FindIt Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h2>FindIt</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>My Reports</li>
+            <li>Messages</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Add Lost / Found Item</h2>
+
+            <form id="itemForm" enctype="multipart/form-data">
+                <select name="type">
+                    <option value="lost">Lost</option>
+                    <option value="found">Found</option>
+                </select>
+
+                <input type="text" name="name" placeholder="Item Name" required>
+                <input type="text" name="description" placeholder="Description" required>
+                <input type="text" name="location" placeholder="Location" required>
+                <input type="file" name="image" required>
+                <input type="hidden" name="email" id="userEmail">
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>All Items</h2>
+            <div id="items"></div>
+        </div>
+
+        <div class="card">
+            <h2>Chat</h2>
+            <div id="chatBox" class="chat-box"></div>
+            <input type="text" id="msg" placeholder="Type your message">
+            <button onclick="sendMsg()">Send</button>
+        </div>
+
+    </div>
+
+    <script>
+        const socket = io();
+        document.getElementById("userEmail").value = localStorage.getItem("userEmail");
+
+        document.getElementById("itemForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            await fetch("/add-item", {
+                method: "POST",
+                body: formData
+            });
+
+            alert("Item Submitted");
+            loadItems();
+        });
+
+        function loadItems() {
+            fetch("/items")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("items").innerHTML =
+                        data.map(i => `
+<div class="item">
+<img src="/uploads/${i.image}" width="80">
+<p><b>${i.name}</b> (${i.type})</p>
+<p>${i.location}</p>
+</div>
+`).join("");
+                });
+        }
+
+        loadItems();
+
+        function sendMsg() {
+            const msg = document.getElementById("msg").value;
+            if (msg.trim() === "") return;
+            socket.emit("sendMessage", localStorage.getItem("userEmail") + ": " + msg);
+            document.getElementById("msg").value = "";
+        }
+
+        socket.on("receiveMessage", (msg) => {
+            document.getElementById("chatBox").innerHTML += `<p>${msg}</p>`;
+        });
+
+        function logout() {
+            localStorage.removeItem("userEmail");
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+
+</html>

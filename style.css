@@ -1,0 +1,126 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: bgAnimation 8s infinite alternate;
+}
+
+/* Background Animation */
+@keyframes bgAnimation {
+    0% {
+        background: linear-gradient(135deg, #4e73df, #1cc88a);
+    }
+
+    100% {
+        background: linear-gradient(135deg, #36b9cc, #f6c23e);
+    }
+}
+
+/* Login Box */
+.login-box {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #4e73df;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.login-box input:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 8px rgba(78, 115, 223, 0.3);
+    outline: none;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #4e73df, #1cc88a);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.4s;
+}
+
+.login-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Info Box */
+.info-box {
+    margin-top: 30px;
+    width: 70%;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    animation: slideUp 1.5s ease;
+}
+
+.info-box img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.info-box h3 {
+    color: #1cc88a;
+    margin-bottom: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

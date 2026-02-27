@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    font-family: Poppins;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar li {
+    cursor: pointer;
+}
+
+.container {
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    background: linear-gradient(45deg, #36d1dc, #5b86e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.item {
+    background: #f8f9fc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    height: 150px;
+    overflow-y: auto;
+    background: #f8f9fc;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
